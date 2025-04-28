@@ -13,9 +13,9 @@ Miguel A. Monsalve
 - Save all bookings to a file
 
 # Future improvements
--Add a map to display the rooms availability
--Implement a user interface
--Improve date  and add a calendar visual interface
+- Add a map to display the rooms availability
+- Implement a user interface
+- Improve date  and add a calendar visual interface
 
 
 
