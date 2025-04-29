@@ -22,7 +22,7 @@ std::vector<Reserva> reservas;
 
 // Miguel Monsalve
 // Funcion para generar un numero de reserva aleatorio
-int bookingNumGenerator() {
+int bookingNumGenerator(){
     srand(time(0));
     int numReserva = rand() % 1000 + 5000;
     for(int i = 0; i < reservas.size(); i++) {
@@ -35,10 +35,10 @@ int bookingNumGenerator() {
 
 // Jean Padilla
 // Funcion para verificar la disponibilidad de habitaciones
-int roomsdisponibility(vector<Reserva>& reservas) {
+int roomsdisponibility(vector<Reserva>& reservas){
     int habitacionesdisponibless = 0;
-    for (int i = 0; i < reservas.size(); i++) {
-        if (reservas[i].numeroHabitacion == 0) {
+    for(int i = 0; i < reservas.size(); i++) {
+        if(reservas[i].numeroHabitacion == 0){
             return habitacionesdisponibless++;
         }
     }
@@ -46,7 +46,7 @@ int roomsdisponibility(vector<Reserva>& reservas) {
 
 // Miguel Monsalve
 // Funcion para buscar reservas por numero de reserva o nombre
-int search(vector<Reserva>& reservas) {
+int search(vector<Reserva>& reservas){
     int opcion;
     string nombre;
     int numReserva;
@@ -55,32 +55,32 @@ int search(vector<Reserva>& reservas) {
     2 - Nombre de la reserva
     )" << endl;
 
-    cin >> opcion;
+    cin>>opcion;
     cin.ignore();
 
-    if (opcion == 1) {
+    if(opcion == 1){
         cout << "Ingrese el numero de reserva: ";
         cin >> numReserva;
 
-        for (int i = 0; i < reservas.size(); i++) {
+        for(int i = 0; i < reservas.size(); i++) {
             if (reservas[i].numReserva == numReserva) {
                 cout << "Reserva encontrada: " << reservas[i].numReserva << endl;
                 return i;
             }
         }
 
-    } else if (opcion == 2) {
+    } else if(opcion == 2){
         cout << "Ingrese el nombre de la reserva: ";
         cin.ignore();
         getline(cin, nombre);
 
-        for (int i = 0; i < reservas.size(); i++) {
-            if (reservas[i].nombre == nombre) {
+        for(int i = 0; i < reservas.size(); i++){
+            if (reservas[i].nombre == nombre){
                 cout << "Reserva encontrada: " << reservas[i].nombre << endl;
                 return i;
             }
         }
-    } else {
+    } else{
         cout << "Input invalido" << endl;
         return -1;
     }
@@ -91,8 +91,8 @@ int search(vector<Reserva>& reservas) {
 
 // Miguel Monsalve
 // Funcion para mostrar las reservas
-void showbooking(vector<Reserva>& reservas) {
-    if (reservas.empty()) {
+void showbooking(vector<Reserva>& reservas){
+    if(reservas.empty()){
         cout << "No hay reservas realizadas.\n";
     } else
         cout << " \n Las reservas actuales son: " << endl;
@@ -104,7 +104,7 @@ void showbooking(vector<Reserva>& reservas) {
          << std::setw(20) << std::left << "numero de habitacion"
          << std::setw(20) << std::left << "Telefono"
          << std::endl;
-    for (int i = 0; i < reservas.size(); i++) {
+    for(int i = 0; i < reservas.size(); i++) {
         cout << std::setw(20) << std::left << reservas[i].nombre
              << std::setw(20) << std::left << reservas[i].fechaEntrada
              << std::setw(20) << std::left << reservas[i].fechaSalida
@@ -118,42 +118,42 @@ void showbooking(vector<Reserva>& reservas) {
 
 // Jean Padilla
 // Funcion para agregar reservas
-void addbooking(vector<Reserva>& reservas) {
+void addbooking(vector<Reserva>& reservas){
     char respuesta;
     Reserva nueva;
     int numReserva;
 
     do {
-        cout << "Ingrese su nombre completo: " << endl;
+        cout << "Ingrese su nombre completo: " <<endl;
         cin.ignore();
         getline(cin, nueva.nombre);
-        cout << "Ingrese su numero de telefono: " << endl;
+        cout << "Ingrese su numero de telefono: " <<endl;
 
         getline(cin, nueva.telefono);
         if (nueva.telefono.length() > 10) {
-            cout << "El numero de telefono no es valido" << endl;
+            cout << "El numero de telefono no es valido" <<endl;
             return;
         }
-        cout << "Ingrese la fecha de entrada (MM/DD/YYYY): " << endl;
+        cout << "Ingrese la fecha de entrada (MM/DD/YYYY): " <<endl;
         getline(cin, nueva.fechaEntrada);
 
-        cout << "Ingrese la fecha de salida (MM/DD/YYYY): " << endl;
+        cout << "Ingrese la fecha de salida (MM/DD/YYYY): " <<endl;
         getline(cin, nueva.fechaSalida);
 
         if (nueva.fechaEntrada > nueva.fechaSalida) {
-            cout << "La fecha de entrada no puede ser mayor a la fecha de salida." << endl;
+            cout << "La fecha de entrada no puede ser mayor a la fecha de salida." <<endl;
             return;
         }
-        cout << "Ingrese el numero de habitacion: " << endl;
+        cout << "Ingrese el numero de habitacion: " <<endl;
         cin >> nueva.numeroHabitacion;
         cin.ignore();
-        if (nueva.numeroHabitacion < 1 || nueva.numeroHabitacion > maxHabitaciones) {
+        if(nueva.numeroHabitacion < 1 || nueva.numeroHabitacion > maxHabitaciones){
             cout << "El numero de habitacion no es valido." << endl;
             return;
         }
-        for (int i = 0; i < reservas.size(); i++) {
-            if (nueva.numeroHabitacion == reservas[i].numeroHabitacion) {
-                cout << "La habitacion ya esta reservada." << endl;
+        for(int i = 0; i < reservas.size(); i++){
+            if (nueva.numeroHabitacion == reservas[i].numeroHabitacion){
+                cout << "La habitacion ya esta reservada." <<endl;
                 return;
             }
         }
@@ -162,21 +162,21 @@ void addbooking(vector<Reserva>& reservas) {
         nueva.numReserva = numReserva;
 
         reservas.push_back(nueva);
-        cout << "Reserva agregada exitosamente." << endl;
+        cout << "Reserva agregada exitosamente." <<endl;
 
-        cout << "Desea agregar otra reserva? (S/N): " << endl;
+        cout << "Desea agregar otra reserva? (S/N): " <<endl;
         cin >> respuesta;
         respuesta = toupper(respuesta);
-        if (respuesta != 'S' && respuesta != 'N') {
+        if(respuesta != 'S' && respuesta != 'N'){
             cout << "Input invalido" << endl;
         }
 
-    } while (respuesta != 'N');
+    } while(respuesta != 'N');
 }
 
 // Miguel Monsalve
 // Funcion para eliminar reservas
-void deletebooking(vector<Reserva>& reservas) {
+void deletebooking(vector<Reserva>& reservas){
     bool found = false;
     string nombreReserva;
     cout << "Ingrese el nombre de la reserva que desea eliminar: ";
@@ -184,13 +184,13 @@ void deletebooking(vector<Reserva>& reservas) {
     getline(cin,nombreReserva);
 
     int i;
-    for (i = 0; i < reservas.size(); i++) {
-        if (reservas[i].nombre == nombreReserva) {
+    for(i = 0; i < reservas.size(); i++){
+        if(reservas[i].nombre == nombreReserva){
             found = true;
             reservas.erase(reservas.begin() + i);
         }
     }
-    if (!found) {
+    if(!found){
         cout << "Reserva no encontrada" << endl;
         return;
     } else
@@ -201,7 +201,7 @@ void deletebooking(vector<Reserva>& reservas) {
 
 // Jean Padilla
 // Funcion para modificar reservas
-void modifybooking(vector<Reserva>& reservas) {
+void modifybooking(vector<Reserva>& reservas){
     string nombreReserva;
     int opcion;
     int index = search(reservas);
@@ -219,14 +219,14 @@ void modifybooking(vector<Reserva>& reservas) {
     4 - Numero de habitacion)" << endl;
     cin >> opcion;
     cin.ignore();
-    switch (opcion) {
-        case 1: {
+    switch (opcion){
+        case 1:{
             cout << "Ingrese el nuevo nombre: ";
             getline(cin, reservas[index].nombre);
             cout << "Nombre modificado exitosamente." << endl;
             break;
         }
-        case 2: {
+        case 2:{
             cout << "Ingrese la nueva fecha de entrada: ";
             cin >> reservas[index].fechaEntrada;
             cout << "Ingrese la nueva fecha de salida: ";
@@ -234,13 +234,13 @@ void modifybooking(vector<Reserva>& reservas) {
             cout << "Las fechas de la reserva fueron modificadas." << endl;
             break;
         }
-        case 3: {
+        case 3:{
             cout << "Ingrese el nuevo telefono: ";
             cin >> reservas[index].telefono;
             cout << "El numero de telefono fue modificado." << endl;
             break;
         }
-        case 4: {
+        case 4:{
             cout << "Ingrese el nuevo numero de habitacion: ";
             cin >> reservas[index].numeroHabitacion;
             cout << "La habitacion fue modificada." << endl;
@@ -254,24 +254,24 @@ void modifybooking(vector<Reserva>& reservas) {
 
 // Miguel Monsalve
 // Funcion para guardar reservas en un archivo
-void savetofile(vector<Reserva>& reservas) {
+void savetofile(vector<Reserva>& reservas){
     ofstream file("Reporte_reservas.txt");
-    for (int i = 0; i < reservas.size(); i++) {
-        file << "Nombre: " << reservas[i].nombre << "\n"
+    for (int i = 0; i < reservas.size(); i++){
+        file << "Nombre: " << reservas[i].nombre <<"\n"
              << "Fecha de entrada: " << reservas[i].fechaEntrada
-             << "Fecha de salida: " << reservas[i].fechaSalida << "\n"
+             << "Fecha de salida: " << reservas[i].fechaSalida <<"\n"
              << "Telefono: " << reservas[i].telefono << "\n"
-             << "Numero de habitacion: " << reservas[i].numeroHabitacion << "\n"
-             << "Numero de reserva: " << reservas[i].numReserva << "\n"
+             << "Numero de habitacion: " << reservas[i].numeroHabitacion <<"\n"
+             << "Numero de reserva: " << reservas[i].numReserva <<"\n"
              << endl;
-        file << "_____________________________________________________________________________" << endl;
+        file << "_____________________________________________________________________________" <<endl;
     }
-    file << "Total de reservas: " << reservas.size() << endl;
+    file << "Total de reservas: " << reservas.size() <<endl;
 
-    cout << "Reservas guardadas exitosamente en el archivo Reporte_reservas.txt." << endl;
+    cout << "Reservas guardadas exitosamente en el archivo Reporte_reservas.txt." <<endl;
     file.close();
     if (file.is_open()) {
-        cout << "Error al guardar el archivo" << endl;
+        cout << "Error al guardar el archivo" <<endl;
     }
 }
 
@@ -295,10 +295,10 @@ int main() {
      )";
         cout << "Ingrese la opcion deseada: ";
         cin >> menuOpt;
-        if (menuOpt < 0 || menuOpt > 5) {
-            cout << "Input no valido" << endl;
+        if(menuOpt < 0 || menuOpt > 5){
+            cout << "Input no valido" <<endl;
         }
-        switch (menuOpt) {
+        switch (menuOpt){
             case 1:
                 addbooking(reservas);
                 break;
@@ -315,6 +315,6 @@ int main() {
                 savetofile(reservas);
                 break;
         }
-    } while (menuOpt != 0);
+    } while(menuOpt != 0);
     return 0;
 }
