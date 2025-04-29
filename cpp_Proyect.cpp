@@ -181,7 +181,7 @@ void deletebooking(vector<Reserva>& reservas) {
     string nombreReserva;
     cout << "Ingrese el nombre de la reserva que desea eliminar: ";
     cin.ignore();
-    cin >> nombreReserva;
+    getline(cin,nombreReserva);
 
     int i;
     for (i = 0; i < reservas.size(); i++) {
